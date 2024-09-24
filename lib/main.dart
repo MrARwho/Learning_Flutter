@@ -31,11 +31,11 @@ class _MenuCategoriesScreenState extends State<MenuCategoriesScreen> {
   void initState() {
     super.initState();
     categories = [
-      MenuCategory(name: 'Pizza', itemCount: 25, imageUrl: "pizza.png"),
-      MenuCategory(name: 'Salads', itemCount: 30, imageUrl: 'salad.png'),
-      MenuCategory(name: 'Desserts', itemCount: 30, imageUrl: 'dessert.png'),
-      MenuCategory(name: 'Pasta', itemCount: 44, imageUrl: 'pasta.png'),
-      MenuCategory(name: 'Beverages', itemCount: 5, imageUrl: 'beverage.png'),
+      MenuCategory(name: 'Pastry', itemCount: 25, imageUrl: "paistry.png"),
+      MenuCategory(name: 'Donut', itemCount: 30, imageUrl: 'Donut.png'),
+      MenuCategory(name: 'Ice Cream', itemCount: 30, imageUrl: 'ice.png'),
+      MenuCategory(name: 'Cake', itemCount: 44, imageUrl: 'cake.png'),
+      MenuCategory(name: 'Mufflin', itemCount: 5, imageUrl: 'muffins.png'),
     ];
   }
 
@@ -89,19 +89,31 @@ class _MenuCategoriesScreenState extends State<MenuCategoriesScreen> {
                         IconButton(
                           icon: Icon(Icons.shopping_cart, color: Colors.white),
                           onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) => CartPage(cart: cart, categories: categories)),
-                            );
+                            if (cart.isNotEmpty) {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => CartPage(
+                                        cart: cart, categories: categories)),
+                              );
+                            } else {
+                              ScaffoldMessenger.of(context)
+                                  .hideCurrentSnackBar();
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(content: Text('Cart is empty')),
+                              );
+                            }
                           },
                         ),
                         if (cart.isNotEmpty)
                           CircleAvatar(
+                            // number on cart icon
                             radius: 8,
                             backgroundColor: Colors.yellow,
                             child: Text(
                               cart.values.reduce((a, b) => a + b).toString(),
-                              style: TextStyle(color: Colors.black, fontSize: 10),
+                              style:
+                                  TextStyle(color: Colors.black, fontSize: 10),
                             ),
                           ),
                       ],
@@ -165,21 +177,45 @@ class CategoryItem extends StatelessWidget {
             ),
           ],
         ),
-        child: ListTile(
-          contentPadding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-          leading: CircleAvatar(
-            backgroundImage: AssetImage(category.imageUrl),
-            radius: 40,
-          ),
-          title: Text(
-            category.name,
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-          ),
-          subtitle: Text('${category.itemCount} items', style: TextStyle(color: Colors.grey)),
-          trailing: IconButton(
-            icon: Icon(Icons.add, color: category.itemCount > 0 ? Colors.grey : Colors.grey.withOpacity(0.3)),
-            onPressed: category.itemCount > 0 ? onAddToCart : null,
-          ),
+        child: Row(
+          children: [
+            CircleAvatar(
+                radius: 40, 
+              child: ClipOval(
+                child: Transform.scale(
+                  scale: 0.9, // Change this value to adjust the zoom level (less than 1 to zoom out)
+                  child: Image.asset(
+                    category.imageUrl,
+                    fit: BoxFit.cover,
+                    width: 120, // Set width and height according to your needs
+                    height: 120,
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(width: 16),
+            Expanded(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    category.name,
+                    style: TextStyle(fontWeight: FontWeight.w900, fontSize: 18),
+                  ),
+                  Text('${category.itemCount} items',
+                      style: TextStyle(color: Colors.grey)),
+                ],
+              ),
+            ),
+            IconButton(
+              icon: Icon(Icons.add,
+                  color: category.itemCount > 0
+                      ? Colors.grey
+                      : Colors.grey.withOpacity(0.3)),
+              onPressed: category.itemCount > 0 ? onAddToCart : null,
+            ),
+          ],
         ),
       ),
     );
@@ -191,14 +227,16 @@ class MenuCategory {
   int itemCount;
   final String imageUrl;
 
-  MenuCategory({required this.name, required this.itemCount, required this.imageUrl});
+  MenuCategory(
+      {required this.name, required this.itemCount, required this.imageUrl});
 }
 
 class CartPage extends StatelessWidget {
   final Map<String, int> cart;
   final List<MenuCategory> categories;
 
-  const CartPage({Key? key, required this.cart, required this.categories}) : super(key: key);
+  const CartPage({Key? key, required this.cart, required this.categories})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -214,7 +252,8 @@ class CartPage extends StatelessWidget {
                 itemCount: cart.length,
                 itemBuilder: (context, index) {
                   String itemName = cart.keys.elementAt(index);
-                  MenuCategory category = categories.firstWhere((c) => c.name == itemName);
+                  MenuCategory category =
+                      categories.firstWhere((c) => c.name == itemName);
                   return CartItem(
                     category: category,
                     quantity: cart[itemName]!,
@@ -222,7 +261,8 @@ class CartPage extends StatelessWidget {
                       Navigator.pop(context);
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => MenuCategoriesScreen()),
+                        MaterialPageRoute(
+                            builder: (context) => MenuCategoriesScreen()),
                       );
                     },
                   );
