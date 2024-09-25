@@ -83,6 +83,8 @@ class _MenuCategoriesScreenState extends State<MenuCategoriesScreen> {
                       },
                     ),
                     Spacer(),
+                    Text('AR Bakers', style: TextStyle(color: Colors.white , fontSize: 20)),
+                    Spacer(),
                     Stack(
                       alignment: Alignment.topRight,
                       children: [
@@ -180,10 +182,11 @@ class CategoryItem extends StatelessWidget {
         child: Row(
           children: [
             CircleAvatar(
-                radius: 40, 
+              radius: 40,
               child: ClipOval(
                 child: Transform.scale(
-                  scale: 0.9, // Change this value to adjust the zoom level (less than 1 to zoom out)
+                  scale:
+                      0.9, // Change this value to adjust the zoom level (less than 1 to zoom out)
                   child: Image.asset(
                     category.imageUrl,
                     fit: BoxFit.cover,
@@ -231,13 +234,18 @@ class MenuCategory {
       {required this.name, required this.itemCount, required this.imageUrl});
 }
 
-class CartPage extends StatelessWidget {
+class CartPage extends StatefulWidget {
   final Map<String, int> cart;
   final List<MenuCategory> categories;
 
   const CartPage({Key? key, required this.cart, required this.categories})
       : super(key: key);
 
+  @override
+  State<CartPage> createState() => _CartPageState();
+}
+
+class _CartPageState extends State<CartPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -249,21 +257,29 @@ class CartPage extends StatelessWidget {
           children: [
             Expanded(
               child: ListView.builder(
-                itemCount: cart.length,
+                itemCount: widget.cart.length,
                 itemBuilder: (context, index) {
-                  String itemName = cart.keys.elementAt(index);
+                  String itemName = widget.cart.keys.elementAt(index);
                   MenuCategory category =
-                      categories.firstWhere((c) => c.name == itemName);
+                      widget.categories.firstWhere((c) => c.name == itemName);
                   return CartItem(
                     category: category,
-                    quantity: cart[itemName]!,
+                    quantity: widget.cart[itemName]!,
                     onDelete: () {
-                      Navigator.pop(context);
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => MenuCategoriesScreen()),
-                      );
+                      setState(() {
+                        widget.cart[itemName] = widget.cart[itemName]! - 1;
+                      if (widget.cart[itemName]! <= 0) {
+                        widget.cart.remove(itemName);
+                      }
+                      if (widget.cart.isEmpty) {
+                        Navigator.pop(context);
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => MenuCategoriesScreen()),
+                        );
+                      }
+                      });
                     },
                   );
                 },
@@ -276,7 +292,8 @@ class CartPage extends StatelessWidget {
                 children: [
                   Text('Total:'),
                   Text(
-                    ' ${cart.values.reduce((a, b) => a + b)} items',
+                    ' ${widget.cart.values.isNotEmpty ? widget.cart.values.reduce((a, b) => a + b) : 0} items',
+                
                     style: TextStyle(fontSize: 20),
                   ),
                 ],
