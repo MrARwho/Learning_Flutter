@@ -1,4 +1,8 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+import 'eyes.dart';
+
 //run pub get
 void main() {
   runApp(MyApp());
@@ -14,7 +18,266 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.red,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MenuCategoriesScreen(),
+      home: Homepage(),
+    );
+  }
+}
+
+class Homepage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Center(child: Text('Flutter Labs')),
+        backgroundColor: const Color.fromARGB(255, 71, 71, 250),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.only(top: 30.0),
+        child: GridView.count(
+          crossAxisCount: 4,
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => MenuCategoriesScreen()));
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color.fromARGB(255, 255, 131, 82),
+                  textStyle: const TextStyle(fontSize: 25),
+                  padding: const EdgeInsets.all(20),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30.0)),
+                ),
+                child: Text('Lab 1'),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => Calculator()));
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color.fromARGB(255, 255, 131, 82),
+                  textStyle: const TextStyle(fontSize: 25),
+                  padding: const EdgeInsets.all(20),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30.0)),
+                ),
+                child: Text('Lab 2'),
+              ),
+            ),
+            FlutterLogo(),
+            FlutterLogo(),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class Calculator extends StatefulWidget {
+  @override
+  CalculatorState createState() => CalculatorState();
+}
+
+class CalculatorState extends State<Calculator> {
+
+  late String _Output = '0';
+  late int a;
+  late int b;
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Center(child: Text('Calculator')),
+      ),
+      body: Center(
+        child: Container(
+          width: MediaQuery.of(context).size.width * 0.6,
+          height: MediaQuery.of(context).size.height * 0.7,
+          decoration: BoxDecoration(
+            color: const Color.fromARGB(255, 76, 115, 224),
+            borderRadius: BorderRadius.circular(40),
+            border: Border.all(
+              color: Colors.black,
+              width: 5,
+            )),
+          child: Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  EyeWidget(),
+                  EyeWidget(),
+                ],
+              ),
+              Column(
+                children: [
+                  Container(
+                    margin: EdgeInsets.all(10),
+                    height: MediaQuery.of(context).size.height * 0.1,
+                    // width: MediaQuery.of(context).size.width * 0.5,
+                    decoration: BoxDecoration(
+                      color: const Color.fromARGB(255, 100, 200, 247),
+                      borderRadius: BorderRadius.all(Radius.circular(20)),
+                      border: Border.all(color: const Color.fromARGB(255, 244, 54, 187) , width: 5),
+
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        
+                        Text("$_Output ", style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 30),),
+                      ]),
+                  ),
+                ],
+              ),
+              Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image(image: AssetImage("smile.png"), width: 250, height: 50,),
+                    ],
+                  ),
+                ],
+              ),
+              Column(
+                children: [
+                  Container(
+                    margin: EdgeInsets.all(10),
+                    height: MediaQuery.of(context).size.height * 0.35,
+                    width: MediaQuery.of(context).size.width * 0.55,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(20)),
+                      border: Border.all(color: const Color.fromARGB(255, 244, 54, 187) , width: 5),
+                    ),
+                    child: 
+                    GridView.count(
+                      childAspectRatio: 0.8/0.7,
+                      crossAxisCount: 4,
+                      children: <Widget>[
+                        ElevatedButton(
+                          onPressed: (){ setState(() {
+                            _Output += '7';
+                          });}, 
+                          child: Text('7', style: TextStyle(fontSize: 30),)
+                        ),
+                        ElevatedButton(
+                          onPressed: (){ setState(() {
+                            _Output += '8';
+                          });}, 
+                          child: Text('8', style: TextStyle(fontSize: 30),)
+                        ),
+                        ElevatedButton(
+                          onPressed: (){ setState(() {
+                            _Output += '9';
+                          });}, 
+                          child: Text('9', style: TextStyle(fontSize: 30),)
+                        ),
+                        ElevatedButton(
+                          onPressed: (){ setState(() {
+                            _Output += '/';
+                          });}, 
+                          child: Text('/', style: TextStyle(fontSize: 30),)
+                        ),
+                        ElevatedButton(
+                          onPressed: (){ setState(() {
+                            _Output += '4';
+                          });}, 
+                          child: Text('4', style: TextStyle(fontSize: 30),)
+                        ),
+                        ElevatedButton(
+                          onPressed: (){ setState(() {
+                            _Output += '5';
+                          });}, 
+                          child: Text('5', style: TextStyle(fontSize: 30),)
+                        ),
+                        ElevatedButton(
+                          onPressed: (){ setState(() {
+                            _Output += '6';
+                          });}, 
+                          child: Text('6', style: TextStyle(fontSize: 30),)
+                        ),
+                        ElevatedButton(
+                          onPressed: (){ setState(() {
+                            _Output += '-';
+                          });}, 
+                          child: Text('-', style: TextStyle(fontSize: 30),)
+                        ),
+                        ElevatedButton(
+                          onPressed: (){ setState(() {
+                            _Output += '1';
+                          });}, 
+                          child: Text('1', style: TextStyle(fontSize: 30),)
+                        ),
+                        ElevatedButton(
+                          onPressed: (){ setState(() {
+                            _Output += '2';
+                          });}, 
+                          child: Text('2', style: TextStyle(fontSize: 30),)
+                        ),
+                        ElevatedButton(
+                          onPressed: (){ setState(() {
+                            _Output += '3';
+                          });}, 
+                          child: Text('3', style: TextStyle(fontSize: 30),)
+                        ),
+                        ElevatedButton(
+                          onPressed: (){ setState(() {
+                            a = int.parse(_Output);
+                            print(a);
+                            _Output += '+';
+                          });}, 
+                          child: Text('+', style: TextStyle(fontSize: 30),)
+                        ),
+                        ElevatedButton(
+                          onPressed: (){ setState(() {
+                            _Output += '0';
+                          });}, 
+                          child: Text('0', style: TextStyle(fontSize: 30),)
+                        ),
+                        ElevatedButton(
+                          onPressed: (){ setState(() {
+                            _Output += '0';
+                          });}, 
+                          child: Text('0', style: TextStyle(fontSize: 30),)
+                        ),
+                        ElevatedButton(
+                          onPressed: (){
+                            setState(() {
+                              b = int.parse(_Output.split('+').last);
+                              print(b);
+                              _Output = (a+b).toString();
+                            });
+                          }, 
+                          child: Text('=', style: TextStyle(fontSize: 30),)
+                        ),
+                        ElevatedButton(
+                          onPressed: (){
+                            setState(() {
+                              _Output = _Output.substring(0, _Output.length - 1);
+                            });
+                          }, 
+                          child: Text('C', style: TextStyle(fontSize: 30),)
+                        ),
+                      ]
+                    ),
+                  ),
+                ],
+              ),
+            ], 
+          ),
+        ),
+      ),
     );
   }
 }
@@ -83,7 +346,8 @@ class _MenuCategoriesScreenState extends State<MenuCategoriesScreen> {
                       },
                     ),
                     Spacer(),
-                    Text('AR Bakers', style: TextStyle(color: Colors.white , fontSize: 20)),
+                    Text('AR Bakers',
+                        style: TextStyle(color: Colors.white, fontSize: 20)),
                     Spacer(),
                     Stack(
                       alignment: Alignment.topRight,
@@ -268,17 +532,17 @@ class _CartPageState extends State<CartPage> {
                     onDelete: () {
                       setState(() {
                         widget.cart[itemName] = widget.cart[itemName]! - 1;
-                      if (widget.cart[itemName]! <= 0) {
-                        widget.cart.remove(itemName);
-                      }
-                      if (widget.cart.isEmpty) {
-                        Navigator.pop(context);
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => MenuCategoriesScreen()),
-                        );
-                      }
+                        if (widget.cart[itemName]! <= 0) {
+                          widget.cart.remove(itemName);
+                        }
+                        if (widget.cart.isEmpty) {
+                          Navigator.pop(context);
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => MenuCategoriesScreen()),
+                          );
+                        }
                       });
                     },
                   );
@@ -293,7 +557,6 @@ class _CartPageState extends State<CartPage> {
                   Text('Total:'),
                   Text(
                     ' ${widget.cart.values.isNotEmpty ? widget.cart.values.reduce((a, b) => a + b) : 0} items',
-                
                     style: TextStyle(fontSize: 20),
                   ),
                 ],
