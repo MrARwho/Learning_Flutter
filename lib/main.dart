@@ -1,7 +1,8 @@
-import 'dart:math';
+// import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'eyes.dart';
+import 'add_task.dart';
 
 //run pub get
 void main() {
@@ -89,6 +90,23 @@ class Homepage extends StatelessWidget {
                 child: Text('Lab 3'),
               ),
             ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => Todolist()));
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color.fromARGB(255, 255, 131, 82),
+                  textStyle: const TextStyle(fontSize: 25),
+                  padding: const EdgeInsets.all(20),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30.0)),
+                ),
+                child: Text('Lab 5'),
+              ),
+            ),
           ],
         ),
       ),
@@ -112,12 +130,13 @@ class CalculatorState extends State<Calculator> {
       state = !state; // Toggle the state of the eyes on button press
     });
   }
+
   void toggleEyes() {
     setState(() {
       isEyeOpen = !isEyeOpen; // Toggle the state of the eyes on button press
     });
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -207,10 +226,10 @@ class CalculatorState extends State<Calculator> {
                                   setState(() {
                                     toggleEyes();
                                     togglestate();
-                                    if(!state){ // Toggle the eyes' state
+                                    if (!state) {
+                                      // Toggle the eyes' state
                                       _Output = '';
-                                     }
-                                    else{
+                                    } else {
                                       _Output = '0';
                                     } // Clear the output
                                   });
@@ -221,178 +240,211 @@ class CalculatorState extends State<Calculator> {
                           ],
                         ),
                         Expanded(
-                          child:
-                        GridView.count(
-                            childAspectRatio: 0.8 / 0.7,
-                            crossAxisCount: 4,
-                            children: <Widget>[
-                              ElevatedButton(
-                                  onPressed: state ? () {
-                                    setState(() {
-                                      _Output += '7';
-                                    });
-                                  } : null,
-                                  child: Text(
-                                    '7',
-                                    style: TextStyle(fontSize: 30),
-                                  )),
-                              ElevatedButton(
-                                  onPressed: state ? () {
-                                    setState(() {
-                                      _Output += '8';
-                                    });
-                                  } : null,
-                                  child: Text(
-                                    '8',
-                                    style: TextStyle(fontSize: 30),
-                                  )),
-                              ElevatedButton(
-                                  onPressed: state ? () {
-                                    setState(() {
-                                      _Output += '9';
-                                    });
-                                  } : null,
-                                  child: Text(
-                                    '9',
-                                    style: TextStyle(fontSize: 30),
-                                  )),
-                              ElevatedButton(
-                                  onPressed: state ? () {
-                                    setState(() {
-                                      _Output += '/';
-                                    });
-                                  } : null,
-                                  child: Text(
-                                    '/',
-                                    style: TextStyle(fontSize: 30),
-                                  )),
-                              ElevatedButton(
-                                  onPressed: state ? () {
-                                    setState(() {
-                                      _Output += '4';
-                                    });
-                                  } : null,
-                                  child: Text(
-                                    '4',
-                                    style: TextStyle(fontSize: 30),
-                                  )),
-                              ElevatedButton(
-                                  onPressed: state ? () {
-                                    setState(() {
-                                      _Output += '5';
-                                    });
-                                  } : null,
-                                  child: Text(
-                                    '5',
-                                    style: TextStyle(fontSize: 30),
-                                  )),
-                              ElevatedButton(
-                                  onPressed: state ? () {
-                                    setState(() {
-                                      _Output += '6';
-                                    });
-                                  } : null,
-                                  child: Text(
-                                    '6',
-                                    style: TextStyle(fontSize: 30),
-                                  )),
-                              ElevatedButton(
-                                  onPressed: state ? () {
-                                    setState(() {
-                                      _Output += '-';
-                                    });
-                                  } : null,
-                                  child: Text(
-                                    '-',
-                                    style: TextStyle(fontSize: 30),
-                                  )),
-                              ElevatedButton(
-                                  onPressed: state ? () {
-                                    setState(() {
-                                      _Output += '1';
-                                    });
-                                  } : null,
-                                  child: Text(
-                                    '1',
-                                    style: TextStyle(fontSize: 30),
-                                  )),
-                              ElevatedButton(
-                                  onPressed: state ? () {
-                                    setState(() {
-                                      _Output += '2';
-                                    });
-                                  } : null,
-                                  child: Text(
-                                    '2',
-                                    style: TextStyle(fontSize: 30),
-                                  )),
-                              ElevatedButton(
-                                  onPressed: state ? () {
-                                    setState(() {
-                                      _Output += '3';
-                                    });
-                                  } : null,
-                                  child: Text(
-                                    '3',
-                                    style: TextStyle(fontSize: 30),
-                                  )),
-                              ElevatedButton(
-                                  onPressed: state ? () {
-                                    setState(() {
-                                      a = int.parse(_Output);
-                                      print(a);
-                                      _Output += '+';
-                                    });
-                                  } : null,
-                                  child: Text(
-                                    '+',
-                                    style: TextStyle(fontSize: 30),
-                                  )),
-                              ElevatedButton(
-                                  onPressed: state ? () {
-                                    setState(() {
-                                      _Output += '0';
-                                    });
-                                  } : null,
-                                  child: Text(
-                                    '0',
-                                    style: TextStyle(fontSize: 30),
-                                  )),
-                              ElevatedButton(
-                                  onPressed: state ? () {
-                                    setState(() {
-                                      _Output += '0';
-                                    });
-                                  } : null,
-                                  child: Text(
-                                    '0',
-                                    style: TextStyle(fontSize: 30),
-                                  )),
-                              ElevatedButton(
-                                  onPressed: state ? () {
-                                    setState(() {
-                                      b = int.parse(_Output.split('+').last);
-                                      print(b);
-                                      _Output = (a + b).toString();
-                                    });
-                                  } : null,
-                                  child: Text(
-                                    '=',
-                                    style: TextStyle(fontSize: 30),
-                                  )),
-                              ElevatedButton(
-                                  onPressed: state ? () {
-                                    setState(() {
-                                      _Output = _Output.substring(
-                                          0, _Output.length - 1);
-                                    });
-                                  } : null,
-                                  child: Text(
-                                    'C',
-                                    style: TextStyle(fontSize: 30),
-                                  )),
-                            ]),
-                    ),],
+                          child: GridView.count(
+                              childAspectRatio: 0.8 / 0.7,
+                              crossAxisCount: 4,
+                              children: <Widget>[
+                                ElevatedButton(
+                                    onPressed: state
+                                        ? () {
+                                            setState(() {
+                                              _Output += '7';
+                                            });
+                                          }
+                                        : null,
+                                    child: Text(
+                                      '7',
+                                      style: TextStyle(fontSize: 30),
+                                    )),
+                                ElevatedButton(
+                                    onPressed: state
+                                        ? () {
+                                            setState(() {
+                                              _Output += '8';
+                                            });
+                                          }
+                                        : null,
+                                    child: Text(
+                                      '8',
+                                      style: TextStyle(fontSize: 30),
+                                    )),
+                                ElevatedButton(
+                                    onPressed: state
+                                        ? () {
+                                            setState(() {
+                                              _Output += '9';
+                                            });
+                                          }
+                                        : null,
+                                    child: Text(
+                                      '9',
+                                      style: TextStyle(fontSize: 30),
+                                    )),
+                                ElevatedButton(
+                                    onPressed: state
+                                        ? () {
+                                            setState(() {
+                                              _Output += '/';
+                                            });
+                                          }
+                                        : null,
+                                    child: Text(
+                                      '/',
+                                      style: TextStyle(fontSize: 30),
+                                    )),
+                                ElevatedButton(
+                                    onPressed: state
+                                        ? () {
+                                            setState(() {
+                                              _Output += '4';
+                                            });
+                                          }
+                                        : null,
+                                    child: Text(
+                                      '4',
+                                      style: TextStyle(fontSize: 30),
+                                    )),
+                                ElevatedButton(
+                                    onPressed: state
+                                        ? () {
+                                            setState(() {
+                                              _Output += '5';
+                                            });
+                                          }
+                                        : null,
+                                    child: Text(
+                                      '5',
+                                      style: TextStyle(fontSize: 30),
+                                    )),
+                                ElevatedButton(
+                                    onPressed: state
+                                        ? () {
+                                            setState(() {
+                                              _Output += '6';
+                                            });
+                                          }
+                                        : null,
+                                    child: Text(
+                                      '6',
+                                      style: TextStyle(fontSize: 30),
+                                    )),
+                                ElevatedButton(
+                                    onPressed: state
+                                        ? () {
+                                            setState(() {
+                                              _Output += '-';
+                                            });
+                                          }
+                                        : null,
+                                    child: Text(
+                                      '-',
+                                      style: TextStyle(fontSize: 30),
+                                    )),
+                                ElevatedButton(
+                                    onPressed: state
+                                        ? () {
+                                            setState(() {
+                                              _Output += '1';
+                                            });
+                                          }
+                                        : null,
+                                    child: Text(
+                                      '1',
+                                      style: TextStyle(fontSize: 30),
+                                    )),
+                                ElevatedButton(
+                                    onPressed: state
+                                        ? () {
+                                            setState(() {
+                                              _Output += '2';
+                                            });
+                                          }
+                                        : null,
+                                    child: Text(
+                                      '2',
+                                      style: TextStyle(fontSize: 30),
+                                    )),
+                                ElevatedButton(
+                                    onPressed: state
+                                        ? () {
+                                            setState(() {
+                                              _Output += '3';
+                                            });
+                                          }
+                                        : null,
+                                    child: Text(
+                                      '3',
+                                      style: TextStyle(fontSize: 30),
+                                    )),
+                                ElevatedButton(
+                                    onPressed: state
+                                        ? () {
+                                            setState(() {
+                                              a = int.parse(_Output);
+                                              print(a);
+                                              _Output += '+';
+                                            });
+                                          }
+                                        : null,
+                                    child: Text(
+                                      '+',
+                                      style: TextStyle(fontSize: 30),
+                                    )),
+                                ElevatedButton(
+                                    onPressed: state
+                                        ? () {
+                                            setState(() {
+                                              _Output += '0';
+                                            });
+                                          }
+                                        : null,
+                                    child: Text(
+                                      '0',
+                                      style: TextStyle(fontSize: 30),
+                                    )),
+                                ElevatedButton(
+                                    onPressed: state
+                                        ? () {
+                                            setState(() {
+                                              _Output += '0';
+                                            });
+                                          }
+                                        : null,
+                                    child: Text(
+                                      '0',
+                                      style: TextStyle(fontSize: 30),
+                                    )),
+                                ElevatedButton(
+                                    onPressed: state
+                                        ? () {
+                                            setState(() {
+                                              b = int.parse(
+                                                  _Output.split('+').last);
+                                              print(b);
+                                              _Output = (a + b).toString();
+                                            });
+                                          }
+                                        : null,
+                                    child: Text(
+                                      '=',
+                                      style: TextStyle(fontSize: 30),
+                                    )),
+                                ElevatedButton(
+                                    onPressed: state
+                                        ? () {
+                                            setState(() {
+                                              _Output = _Output.substring(
+                                                  0, _Output.length - 1);
+                                            });
+                                          }
+                                        : null,
+                                    child: Text(
+                                      'C',
+                                      style: TextStyle(fontSize: 30),
+                                    )),
+                              ]),
+                        ),
+                      ],
                     ),
                   ),
                 ],
@@ -747,7 +799,6 @@ class CartItem extends StatelessWidget {
   }
 }
 
-
 class Players {
   late String name;
   late String type;
@@ -755,16 +806,14 @@ class Players {
   late int wickets;
   late int matches;
 
-  Players({required this.name, required this.type}){
+  Players({required this.name, required this.type}) {
     this.runs = 0;
     this.wickets = 0;
     this.matches = 0;
-
   }
 }
 
 class PlayerList extends StatelessWidget {
-
   final List<Players> players = [
     Players(name: "Virat", type: "Batsman"),
     Players(name: "bobzy", type: "Batsman"),
@@ -776,32 +825,31 @@ class PlayerList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Players'),
-      ),
-      body: ListView.builder(
-        itemCount: players.length,
-        itemBuilder: (context, index) {
-          return ListTile(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => PlayerDetails(player: players[index]),
+        appBar: AppBar(
+          title: Text('Players'),
+        ),
+        body: ListView.builder(
+            itemCount: players.length,
+            itemBuilder: (context, index) {
+              return ListTile(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          PlayerDetails(player: players[index]),
+                    ),
+                  );
+                },
+                leading: CircleAvatar(
+                  backgroundImage: AssetImage(
+                      "${players[index].name.replaceFirst(" ", "_")}.png"),
+                  radius: 30,
                 ),
+                title: Text(players[index].name),
+                subtitle: Text(players[index].type),
               );
-            },
-            leading: CircleAvatar(
-              backgroundImage: AssetImage("${players[index].name.replaceFirst(" ", "_")}.png"),
-              radius: 30,
-            ),
-            title: Text(players[index].name),
-            subtitle: Text(players[index].type),
-          );
-        }
-      )
-    );
-    
+            }));
   }
 }
 
@@ -820,7 +868,8 @@ class PlayerDetails extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             CircleAvatar(
-              backgroundImage: AssetImage("${player.name.replaceFirst(" ", "_")}.png"),
+              backgroundImage:
+                  AssetImage("${player.name.replaceFirst(" ", "_")}.png"),
               radius: 100,
             ),
             SizedBox(height: 16),
@@ -833,3 +882,116 @@ class PlayerDetails extends StatelessWidget {
     );
   }
 }
+
+class Todolist extends StatefulWidget {
+  @override
+  State<Todolist> createState() => _TodolistState();
+}
+
+class _TodolistState extends State<Todolist> {
+  final List<String> tasks = ["Task 1", "Task 2", "Task 3", "Task 4"];
+  List<bool> taskCompletionStatus = [false, false, false, false];
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(scaffoldBackgroundColor: const Color(0xFF3451a1)),
+        home: Scaffold(
+          appBar: AppBar(
+            elevation: 10,
+            backgroundColor: Color.fromARGB(0, 5, 25, 86),
+            title: Text(
+              "To Do List",
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 25,
+                  fontWeight: FontWeight.bold),
+            ),
+            centerTitle: true,
+          ),
+          body: Container(
+            padding: EdgeInsets.only(
+              top: 20,
+              left: 20,
+              right: 20,
+            ),
+            child: ListView.builder(
+                itemCount: tasks.length,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.all(5.0),
+                    child: ListTile(
+                      minTileHeight: 70,
+                      title: Text(
+                        tasks[index],
+                        style: TextStyle(
+                          decoration: taskCompletionStatus[index]
+                              ? TextDecoration.lineThrough
+                              : TextDecoration.none,
+                        ),
+                      ),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15)),
+                      tileColor: const Color(0xff051956),
+                      textColor: const Color.fromARGB(255, 255, 255, 255),
+                      leading: Transform.scale(
+                          scale: 1.5,
+                          child: Checkbox(
+                            activeColor: Color(0xFFe906fd),
+                            side: BorderSide(color: Color(0xFFe906fd)),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(50),
+                            ),
+                            value: taskCompletionStatus[index],
+                            checkColor: Color(0xFF051956),
+                            onChanged: (bool? value) {
+                              setState(() {
+                                taskCompletionStatus[index] = value ?? false;
+                              });
+                            },
+                          )),
+                    ),
+                  );
+                }),
+          ),
+          floatingActionButton: FloatingActionButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => AddTask()),
+              );
+            },
+            backgroundColor: Color(0xFFe907f9),
+            tooltip: "Add Task",
+            child: Icon(Icons.add),
+          ),
+        ));
+  }
+}
+
+// class AddTask extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: Text("Add Task"),
+//       ),
+//       body: Column(
+//         children: [
+//           Row(
+//             children: [
+//               Text("Add Task : "),
+//               TextFormField(
+//                 decoration: const InputDecoration(
+//                   border: UnderlineInputBorder(),
+//                   labelText: 'Enter your username',
+//                 ),
+//               ),
+//             ],
+//           ),
+//         ],
+//       ),
+//     );
+//   }
+// }
