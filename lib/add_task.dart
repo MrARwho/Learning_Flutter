@@ -36,10 +36,10 @@ class AddTask extends StatelessWidget {
                   print("task add");
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFFe907fe),
-                  side: BorderSide(color: const Color(0xFF2d7df2), width: 2.0)
+                  backgroundColor: const Color(0xFF2d7df2),
+                  side: BorderSide(color: const Color(0xFFe907fe), width: 2.0)
                 )
-                , child: Text("Add Task")),
+                , child: Text("Add Task" , style: TextStyle(color: Colors.white),)),
               ),
             ],
           ),
