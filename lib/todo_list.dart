@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'add_task.dart';
+
 class Todolist extends StatefulWidget {
   @override
   State<Todolist> createState() => _TodolistState();
@@ -68,16 +69,35 @@ class _TodolistState extends State<Todolist> {
                               });
                             },
                           )),
+                      trailing: IconButton(
+                        icon: Icon(
+                          Icons.delete,
+                          color: Color.fromARGB(255, 194, 14, 56),
+                        ),
+                        onPressed: () {
+                          setState(() {
+                            tasks.removeAt(index);
+                            taskCompletionStatus.removeAt(index);
+                          });
+                        },
+                      ),
                     ),
                   );
                 }),
           ),
           floatingActionButton: FloatingActionButton(
-            onPressed: () {
-              Navigator.push(
+            onPressed: () async {
+              final taskreturn = (await Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => AddTask()),
-              );
+              ));
+
+              setState(() {
+                if (taskreturn != null) {
+                  tasks.add(taskreturn);
+                  taskCompletionStatus.add(false);
+                }
+              });
             },
             backgroundColor: Color(0xFFe907f9),
             tooltip: "Add Task",

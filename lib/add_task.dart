@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 class AddTask extends StatelessWidget {
+  final _formKey = GlobalKey<FormBuilderState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,12 +18,15 @@ class AddTask extends StatelessWidget {
                 padding: const EdgeInsets.only(top: 20),
                 child: SizedBox(
                   width: 300,
-                  child: TextFormField(
-                    decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: 'Enter your Task',
+                  child: FormBuilder(
+                    key: _formKey,
+                    child: FormBuilderTextField(name: 'task',
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: 'Enter your Task',
+                      ),
                     ),
-                  ),
+                  )
                 ),
               ),
             ],
@@ -33,7 +38,10 @@ class AddTask extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(top: 20),
                 child: ElevatedButton(onPressed: () {
-                  print("task add");
+                  _formKey.currentState!.save();
+                  final formData = _formKey.currentState?.value;
+                  print(formData?['task']);
+                  Navigator.pop(context, formData?['task']);
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(0xFF2d7df2),

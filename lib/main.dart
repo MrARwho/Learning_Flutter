@@ -14,11 +14,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Menu Categories',
-      theme: ThemeData(
-        primarySwatch: Colors.red,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
+      title: 'Flutter Labs',
+      
       home: Homepage(),
     );
   }
@@ -29,7 +26,7 @@ class Homepage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Center(child: Text('Flutter Labs')),
+        title: Center(child: Text('Flutter Labs' , style: TextStyle(color: Colors.white),)),
         backgroundColor: const Color.fromARGB(255, 71, 71, 250),
       ),
       body: Padding(
