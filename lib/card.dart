@@ -42,13 +42,13 @@ class card extends StatelessWidget {
                   alignment: Alignment.center,
                   child: Padding(
                     padding: const EdgeInsets.only(top: 80.0),
-                    child: Text(
-                      '0004-2520-0000-1231',
-                      style: TextStyle(
-                        color: const Color.fromARGB(255, 219, 136, 20),
+                    child: ThreeDText(
+                      text: "2205 5350 2500 8925",
+                      textStyle: TextStyle(
                         fontSize: 20,
-                        fontWeight: FontWeight.bold,
+                        color: const Color.fromARGB(255, 219, 136, 20),
                       ),
+                      style: ThreeDStyle.standard,
                     ),
                   ),
                 ),
@@ -57,7 +57,7 @@ class card extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.only(bottom: 40.0, right: 10.0),
                     child: Text(
-                      'Expiry: 22/5/2027',
+                      'Valid thru: 10/27',
                       style: TextStyle(
                         color: const Color.fromARGB(255, 255, 255, 255),
                         fontSize: 15,
@@ -70,7 +70,8 @@ class card extends StatelessWidget {
                   alignment: Alignment.bottomLeft,
                   child: Padding(
                     padding: const EdgeInsets.only(bottom: 0.0, left: 10.0),
-                    child: Image(image: const AssetImage('visa.png'),
+                    child: Image(
+                      image: const AssetImage('visa.png'),
                       height: 100,
                       width: 100,
                     ),
@@ -79,8 +80,9 @@ class card extends StatelessWidget {
                 Align(
                   alignment: Alignment.topLeft,
                   child: Padding(
-                    padding: const EdgeInsets.only(top: 0.0, left:5.0),
-                    child: Image(image: const AssetImage('AR.png'),
+                    padding: const EdgeInsets.only(top: 0.0, left: 5.0),
+                    child: Image(
+                      image: const AssetImage('AR.png'),
                       height: 80,
                       width: 80,
                     ),
@@ -89,8 +91,9 @@ class card extends StatelessWidget {
                 Align(
                   alignment: Alignment.topRight,
                   child: Padding(
-                    padding: const EdgeInsets.only(top: 0.0, left:5.0),
-                    child: Image(image: const AssetImage('NFC.png'),
+                    padding: const EdgeInsets.only(top: 0.0, left: 5.0),
+                    child: Image(
+                      image: const AssetImage('NFC.png'),
                       height: 80,
                       width: 80,
                     ),
