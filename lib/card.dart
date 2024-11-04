@@ -1,6 +1,7 @@
 // ignore_for_file: camel_case_types
 
 import 'package:flutter/material.dart';
+import 'package:text_3d/text_3d.dart';
 
 class card extends StatelessWidget {
   const card({super.key});
