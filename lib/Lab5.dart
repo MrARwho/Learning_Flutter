@@ -9,7 +9,7 @@ class Lab5 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Center(child: Text('Flutter Labs' , style: TextStyle(color: Colors.white),)),
+        title: Center(child: Text('Flutter Lab 5' , style: TextStyle(color: Colors.white),)),
         backgroundColor: const Color.fromARGB(255, 71, 71, 250),
       ),
       body: Padding(
@@ -31,7 +31,7 @@ class Lab5 extends StatelessWidget {
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30.0)),
                 ),
-                child: Text('Lab 5'),
+                child: Text('Task 1'),
               ),
             ),
             Padding(
@@ -48,7 +48,7 @@ class Lab5 extends StatelessWidget {
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30.0)),
                 ),
-                child: Text('Lab 5 task 2'),
+                child: Text('task 2'),
               ),
             ),
             Padding(
@@ -65,7 +65,7 @@ class Lab5 extends StatelessWidget {
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30.0)),
                 ),
-                child: Text('Lab 5 task 3'),
+                child: Text('task 3'),
               ),
             ),
           ],

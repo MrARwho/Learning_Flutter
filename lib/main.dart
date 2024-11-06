@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:hello/Lab5.dart';
 import 'calculator.dart';
-import 'todo_list.dart';
 import 'foodapp.dart';
 import 'players.dart';
-import 'questions.dart';
-import 'colorpick.dart';
 import 'classtasks.dart';
+import 'lab6.dart';
 
 //run pub get
 void main() {
@@ -108,7 +106,23 @@ class Homepage extends StatelessWidget {
                 child: Text('Lab 5'),
               ),
             ),
-            
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => Lab6()));
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color.fromARGB(255, 255, 131, 82),
+                  textStyle: const TextStyle(fontSize: 25),
+                  padding: const EdgeInsets.all(20),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30.0)),
+                ),
+                child: Text('Lab 6'),
+              ),
+            ),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: ElevatedButton(
