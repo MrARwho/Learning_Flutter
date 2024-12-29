@@ -4,7 +4,6 @@ import 'eyes.dart';
 
 class ClassTasks extends StatelessWidget {
   final List<Widget> pages = [
-    EyeWidget(isEyeOpen: true),
     card()
   ];
   @override

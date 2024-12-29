@@ -5,9 +5,17 @@ import 'foodapp.dart';
 import 'players.dart';
 import 'classtasks.dart';
 import 'lab6.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase.dart';
+import 'firebase_options.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 //run pub get
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+  options: DefaultFirebaseOptions.currentPlatform,
+);
   runApp(MyApp());
 }
 
@@ -28,7 +36,7 @@ class Homepage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Center(child: Text('Flutter Labs' , style: TextStyle(color: Colors.white),)),
+        title: Center(child: Text('Flutter Projects' , style: TextStyle(color: Colors.white),)),
         backgroundColor: const Color.fromARGB(255, 71, 71, 250),
       ),
       body: Padding(
@@ -52,7 +60,7 @@ class Homepage extends StatelessWidget {
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30.0)),
                 ),
-                child: Text('Lab 1'),
+                child: Text('Bakery'),
               ),
             ),
             Padding(
@@ -69,7 +77,7 @@ class Homepage extends StatelessWidget {
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30.0)),
                 ),
-                child: Text('Lab 2'),
+                child: Text('Calc :)'),
               ),
             ),
             Padding(
@@ -86,7 +94,7 @@ class Homepage extends StatelessWidget {
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30.0)),
                 ),
-                child: Text('Lab 3'),
+                child: Text('Cricket'),
               ),
             ),
             Padding(
@@ -103,7 +111,7 @@ class Homepage extends StatelessWidget {
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30.0)),
                 ),
-                child: Text('Lab 5'),
+                child: Text('TO-DO'),
               ),
             ),
             Padding(
@@ -120,7 +128,7 @@ class Homepage extends StatelessWidget {
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30.0)),
                 ),
-                child: Text('Lab 6'),
+                child: Text('Anime'),
               ),
             ),
             Padding(
@@ -137,7 +145,26 @@ class Homepage extends StatelessWidget {
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30.0)),
                 ),
-                child: Text('Class Tasks'),
+                child: Text('Card'),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => MyAppflutter()));
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color.fromARGB(255, 255, 131, 82),
+                  textStyle: const TextStyle(fontSize: 25),
+                  padding: const EdgeInsets.all(20),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30.0)),
+                ),
+                child: Text('firebase'),
               ),
             ),
           ],
